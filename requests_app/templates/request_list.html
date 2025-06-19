@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Request List | Approval Web Bank Application{% endblock %}
+{% block content %}
+    <div class="alert bg-light">
+        <a class="btn btn-outline-primary" href="{% url 'request_create' %}">Create New Request</a>
+    </div>
+    <ul class="list-group">
+        {% for request in requests %}
+            <li class="list-group-item">
+                <strong>Applicant Name:</strong>  {{ request.Applicant_Name }}
+                <strong> Marital Status</strong><span class="text-danger">{% if request.Married %} Yes {% else %} No {%endif%}</span>
+                <strong>Property Area:</strong> <span class="text-dark">
+
+                    {{ request.Property_Area }}
+                </span>
+                <span class="p-2 bg-light">Status: {{ request.status }}</span>
+                <div class="py-2 d-flex justify-content-around w-25">
+
+                    <a class="list-group-link btn btn-outline-info text-dark" href="{% url 'request_update' request.pk %}">Edit</a>
+                    <a class="list-group-link btn btn-outline-danger text-dark" href="{% url 'request_delete' request.pk %}">Delete</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
