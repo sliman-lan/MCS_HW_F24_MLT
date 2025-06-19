@@ -11,6 +11,9 @@ model = joblib.load('ml_model/trained_randomforest_model.pkl')  # Update the pat
 def home(request):
     return render(request, 'home.html')
 
+def report(request):
+    return render(request, 'EDA_Report.html')
+
 def request_list(request):
     requests = Request.objects.all()
     return render(request, 'request_list.html', {'requests': requests})
